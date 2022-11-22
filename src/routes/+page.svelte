@@ -70,6 +70,17 @@
 	}
 </script>
 
+<svelte:head>
+	<title>Kotti Island</title>
+	<link
+		rel="preload"
+		as="font"
+		type="font/woff2"
+		href="/fonts/ABCGravityVariable.woff2"
+		crossorigin="true"
+	/>
+</svelte:head>
+
 <svelte:window on:resize={setViewBox} />
 
 <main
@@ -96,7 +107,15 @@
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
 			>
-				<rect bind:this={rect} x="50%" y="0%" width="15%" height="100%" transform="rotate(12)" fill="#fff" />
+				<rect
+					bind:this={rect}
+					x="50%"
+					y="0%"
+					width="15%"
+					height="100%"
+					transform="rotate(12)"
+					fill="#fff"
+				/>
 			</svg>
 		</div>
 		<h1 class="text exhibition">Eine Ausstellung</h1>
