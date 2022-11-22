@@ -1,71 +1,147 @@
 <script lang="ts">
 	import { onMount } from 'svelte'
+	import { browser } from '$app/environment'
+	import anime from 'animejs'
 
-	let active: 'exhibition' | 'album' = 'exhibition'
+	type Section = 'exhibition' | 'album'
+	let activeSection: Section = 'exhibition'
+
+	let containerElement: HTMLElement
+
+	let smallViewBoxWidth = 0
+	let largeViewBoxWidth = 0
+	let viewBoxHeight = 0
+	let ellipseRotation = 0
 
 	function setViewBox() {
 		const ellipseContainer = document.querySelector('.ellipse')!
 		// Update the containing viewport to the element size
-		const { width, height } = ellipseContainer.getBoundingClientRect()
-		ellipseContainer.setAttribute('viewBox', `0 0 ${width} ${height}`)
+		console.log('ellipse', ellipseContainer.getBoundingClientRect())
+		console.log('container', containerElement.getBoundingClientRect())
+
+		const { width, height } = containerElement.getBoundingClientRect()
+		smallViewBoxWidth = width / 6
+		largeViewBoxWidth = (width / 6) * 5
+		viewBoxHeight = height
 
 		// Tweak the rotation of the ellipse to not go over the sides
 		const arbitraryMagicNumber = 32
-		const shape = ellipseContainer.querySelector('ellipse')!
-		shape.setAttribute('transform', `rotate(${arbitraryMagicNumber * (width / height)})`)
+		ellipseRotation = arbitraryMagicNumber * (smallViewBoxWidth / viewBoxHeight)
 	}
 
+	let ellipseElement: SVGEllipseElement
+	let rectangleElement: SVGRectElement
+
 	onMount(() => {
-		window.addEventListener('resize', setViewBox)
 		setViewBox()
 	})
 
-	onMount(() => {
-		const container = document.querySelector('main.container')
-		const exhibitionSection = document.querySelector('.section.exhibition')
-		const albumSection = document.querySelector('.section.album')
+	const animationDuration = 800
+	const defaultOptions = {
+		easing: 'easeInSine',
+		duration: animationDuration,
+	}
 
-		exhibitionSection.addEventListener('mouseover', () => {
-			container.classList.remove('hover-album')
-			container.classList.add('hover-exhibition')
-		})
-		albumSection.addEventListener('mouseover', () => {
-			container.classList.remove('hover-exhibition')
-			container.classList.add('hover-album')
-		})
-	})
+	$: {
+		if (browser && activeSection === 'album') {
+			anime({
+				targets: rectangleElement,
+				x: '50%',
+				y: '0%',
+				width: '15%',
+				height: '100%',
+				...defaultOptions,
+			})
+			anime({
+				targets: ellipseElement,
+				rx: '250%',
+				ry: '25%',
+				...defaultOptions,
+			})
+		} else if (browser) {
+			anime({
+				targets: rectangleElement,
+				x: '-180%',
+				y: '25%',
+				width: '460%',
+				height: '50%',
+				...defaultOptions,
+			})
+			anime({
+				targets: ellipseElement,
+				rx: '40%',
+				ry: '50%',
+				...defaultOptions,
+			})
+		}
+	}
 </script>
 
-<main class="container">
+<svelte:window on:resize={setViewBox} />
+
+<main
+	class="container"
+	class:hover-exhibition={activeSection === 'exhibition'}
+	class:hover-album={activeSection === 'album'}
+	bind:this={containerElement}
+>
 	<h1 class="title">
 		<span class="kotti">Kotti</span>
 		<span class="island">Island</span>
 	</h1>
 	<section
 		class="section exhibition"
-		on:mouseover={() => (active = 'exhibition')}
-		on:focus={() => (active = 'exhibition')}
+		on:mouseover={() => (activeSection = 'exhibition')}
+		on:focus={() => (activeSection = 'exhibition')}
 	>
+		<div class="svg-container">
+			<svg
+				class="rectangle"
+				width="100%"
+				height="100%"
+				viewBox="0 0 {smallViewBoxWidth} {viewBoxHeight}"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<rect
+					bind:this={rectangleElement}
+					x="50%"
+					y="0%"
+					width="15%"
+					height="100%"
+					transform="rotate(12)"
+					fill="#fff"
+				/>
+			</svg>
+		</div>
 		<h1 class="text exhibition">Eine Ausstellung</h1>
 	</section>
 	<section
 		class="section album"
-		on:mouseover={() => (active = 'album')}
-		on:focus={() => (active = 'album')}
+		on:mouseover={() => (activeSection = 'album')}
+		on:focus={() => (activeSection = 'album')}
 	>
-		<h1 class="text album">Ein Album</h1>
 		<div class="svg-container">
 			<svg
 				class="ellipse"
-				version="1.1"
 				width="100%"
 				height="100%"
-				viewBox="0 0 500 500"
-				preserveAspectRatio="xMinYMin meet"
+				viewBox="0 0 {smallViewBoxWidth} {viewBoxHeight}"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
 			>
-				<ellipse fill="var(--green)" cx="50%" cy="50%" rx="40%" ry="50%" transform="rotate(5)" />
+				<ellipse
+					bind:this={ellipseElement}
+					fill="var(--green)"
+					cx="50%"
+					cy="50%"
+					rx="40%"
+					ry="50%"
+					transform="rotate({ellipseRotation})"
+				/>
 			</svg>
 		</div>
+		<h1 class="text album">Ein Album</h1>
 	</section>
 </main>
 
@@ -76,6 +152,8 @@
 
 		--large-width: calc(100% / 6 * 5);
 		--small-width: calc(100% / 6);
+
+		--transition-duration: 1s;
 	}
 
 	.title {
@@ -105,7 +183,7 @@
 		overflow: hidden;
 		display: flex;
 		align-items: center;
-		transition: all 0.5s ease;
+		transition: all var(--transition-duration) ease-in-out;
 
 		&.exhibition {
 			background-color: var(--green);
@@ -138,10 +216,14 @@
 	}
 
 	.text {
+		width: 100%;
 		font-size: 170px;
 		text-transform: uppercase;
 		line-height: 0.8;
-		transition: all 0.5s ease;
+		transition: all var(--transition-duration) ease-in-out;
+		text-align: center;
+		position: relative;
+		z-index: 2;
 	}
 
 	.svg-container {
@@ -151,6 +233,7 @@
 		width: 100%;
 		height: 100%;
 
+		rect,
 		ellipse {
 			transform-box: fill-box;
 			transform-origin: center;
