@@ -9,19 +9,12 @@
 	let containerElement: HTMLElement
 
 	let smallViewBoxWidth = 0
-	let largeViewBoxWidth = 0
 	let viewBoxHeight = 0
 	let ellipseRotation = 0
 
 	function setViewBox() {
-		const ellipseContainer = document.querySelector('.ellipse')!
-		// Update the containing viewport to the element size
-		console.log('ellipse', ellipseContainer.getBoundingClientRect())
-		console.log('container', containerElement.getBoundingClientRect())
-
 		const { width, height } = containerElement.getBoundingClientRect()
 		smallViewBoxWidth = width / 6
-		largeViewBoxWidth = (width / 6) * 5
 		viewBoxHeight = height
 
 		// Tweak the rotation of the ellipse to not go over the sides
@@ -29,8 +22,8 @@
 		ellipseRotation = arbitraryMagicNumber * (smallViewBoxWidth / viewBoxHeight)
 	}
 
-	let ellipseElement: SVGEllipseElement
-	let rectangleElement: SVGRectElement
+	let ellipse: SVGEllipseElement
+	let rect: SVGRectElement
 
 	onMount(() => {
 		setViewBox()
@@ -45,7 +38,7 @@
 	$: {
 		if (browser && activeSection === 'album') {
 			anime({
-				targets: rectangleElement,
+				targets: rect,
 				x: '50%',
 				y: '0%',
 				width: '15%',
@@ -53,14 +46,14 @@
 				...defaultOptions,
 			})
 			anime({
-				targets: ellipseElement,
+				targets: ellipse,
 				rx: '250%',
 				ry: '25%',
 				...defaultOptions,
 			})
 		} else if (browser) {
 			anime({
-				targets: rectangleElement,
+				targets: rect,
 				x: '-180%',
 				y: '25%',
 				width: '460%',
@@ -68,7 +61,7 @@
 				...defaultOptions,
 			})
 			anime({
-				targets: ellipseElement,
+				targets: ellipse,
 				rx: '40%',
 				ry: '50%',
 				...defaultOptions,
@@ -103,15 +96,7 @@
 				fill="none"
 				xmlns="http://www.w3.org/2000/svg"
 			>
-				<rect
-					bind:this={rectangleElement}
-					x="50%"
-					y="0%"
-					width="15%"
-					height="100%"
-					transform="rotate(12)"
-					fill="#fff"
-				/>
+				<rect bind:this={rect} x="50%" y="0%" width="15%" height="100%" transform="rotate(12)" fill="#fff" />
 			</svg>
 		</div>
 		<h1 class="text exhibition">Eine Ausstellung</h1>
@@ -131,7 +116,7 @@
 				xmlns="http://www.w3.org/2000/svg"
 			>
 				<ellipse
-					bind:this={ellipseElement}
+					bind:this={ellipse}
 					fill="var(--green)"
 					cx="50%"
 					cy="50%"
