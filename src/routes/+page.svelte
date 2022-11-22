@@ -109,10 +109,10 @@
 			>
 				<rect
 					bind:this={rect}
-					x="50%"
-					y="0%"
-					width="15%"
-					height="100%"
+					x="-180%"
+					y="25%"
+					width="460%"
+					height="50%"
 					transform="rotate(12)"
 					fill="#fff"
 				/>
