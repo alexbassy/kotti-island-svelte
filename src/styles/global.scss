@@ -1,0 +1,18 @@
+@import 'reset.scss';
+
+@font-face {
+	font-family: 'ABC Gravity';
+	src: url('/fonts/ABCGravityVariable.woff2') format('woff2'),
+		url('/fonts/ABCGravityVariable.woff2') format('woff2-variations');
+	font-weight: 100 1000;
+	font-stretch: 25% 151%;
+}
+
+:root {
+	--green: #49e98c;
+}
+
+html {
+	font-family: 'ABC Gravity', system-ui, sans-serif;
+	background-color: #f6f6f6;
+}
