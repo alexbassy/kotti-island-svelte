@@ -12,6 +12,10 @@
 	let viewBoxHeight = 0
 	let ellipseRotation = 0
 
+	function setActiveSection(s: Section) {
+		return () => (activeSection = s)
+	}
+
 	function setViewBox() {
 		const { width, height } = containerElement.getBoundingClientRect()
 		smallViewBoxWidth = width / 6
@@ -95,8 +99,8 @@
 	</h1>
 	<section
 		class="section exhibition"
-		on:mouseover={() => (activeSection = 'exhibition')}
-		on:focus={() => (activeSection = 'exhibition')}
+		on:mouseover={setActiveSection('exhibition')}
+		on:focus={setActiveSection('exhibition')}
 	>
 		<div class="svg-container">
 			<svg
@@ -118,12 +122,12 @@
 				/>
 			</svg>
 		</div>
-		<h1 class="text exhibition">Eine Ausstellung</h1>
+		<h1 class="text exhibition">Eine <br />Ausstel<wbr />lung</h1>
 	</section>
 	<section
 		class="section album"
-		on:mouseover={() => (activeSection = 'album')}
-		on:focus={() => (activeSection = 'album')}
+		on:mouseover={setActiveSection('album')}
+		on:focus={setActiveSection('album')}
 	>
 		<div class="svg-container">
 			<svg
