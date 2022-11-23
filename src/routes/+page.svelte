@@ -117,7 +117,7 @@
 					y="25%"
 					width="460%"
 					height="50%"
-					transform="rotate(12)"
+					transform="rotate(12 {smallViewBoxWidth / 10} 0)"
 					fill="#fff"
 				/>
 			</svg>
