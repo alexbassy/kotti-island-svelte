@@ -225,10 +225,10 @@
 
 	.text {
 		width: 100%;
-		font-size: 170px;
+		font-size: calc(6vw + 10vh);
 		text-transform: uppercase;
 		line-height: 0.8;
-		transition: all var(--transition-duration) ease-in-out;
+		transition: font-stretch var(--transition-duration) ease-in-out;
 		text-align: center;
 		position: relative;
 		z-index: 2;
