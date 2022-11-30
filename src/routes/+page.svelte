@@ -3,6 +3,17 @@
 	import { browser } from '$app/environment'
 	import anime from 'animejs'
 
+	const breakpoint = 768
+	let isMobile
+
+	if (browser) {
+		const query = window.matchMedia(`(min-width: ${breakpoint}px)`)
+		query.addEventListener('change', (event) => {
+			isMobile = event.matches
+		})
+		isMobile = query.matches
+	}
+
 	type Section = 'exhibition' | 'album'
 	let activeSection: Section = 'exhibition'
 
@@ -154,14 +165,23 @@
 </main>
 
 <style lang="scss">
+	@mixin small {
+		@media (max-width: 769px) {
+			@content;
+		}
+	}
+	@mixin large {
+		@media (min-width: 768px) {
+			@content;
+		}
+	}
+
 	:root {
+		--transition-duration: 1s;
 		--stretched: 150%;
 		--compressed: 50%;
-
 		--large-width: calc(100% / 6 * 5);
 		--small-width: calc(100% / 6);
-
-		--transition-duration: 1s;
 	}
 
 	.title {
@@ -172,6 +192,11 @@
 		text-align: center;
 		text-transform: uppercase;
 		font-size: 40px;
+		transition: opacity 0.25s ease;
+
+		@include small {
+			opacity: 0;
+		}
 
 		.kotti {
 			font-stretch: 142%;
@@ -184,6 +209,11 @@
 	.container {
 		display: flex;
 		height: 100vh;
+		flex-direction: column;
+
+		@include large {
+			flex-direction: row;
+		}
 	}
 
 	.section {
@@ -195,10 +225,10 @@
 
 		&.exhibition {
 			background-color: var(--green);
-			width: var(--large-width);
+			flex-basis: var(--large-width);
 
 			.hover-album & {
-				width: var(--small-width);
+				flex-basis: var(--small-width);
 
 				.text {
 					font-stretch: var(--compressed);
@@ -207,14 +237,14 @@
 		}
 
 		&.album {
-			width: var(--small-width);
+			flex-basis: var(--small-width);
 
 			.text {
 				font-stretch: var(--compressed);
 			}
 
 			.hover-album & {
-				width: var(--large-width);
+				flex-basis: var(--large-width);
 
 				.text {
 					font-stretch: var(--stretched);
