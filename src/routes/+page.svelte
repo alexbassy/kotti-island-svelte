@@ -185,11 +185,12 @@
 	}
 
 	.title {
+    display: flex;
 		position: absolute;
 		width: 100%;
 		top: 0%;
 		z-index: 2;
-		text-align: center;
+		justify-content: center;
 		text-transform: uppercase;
 		font-size: 40px;
 		transition: opacity 0.25s ease;
