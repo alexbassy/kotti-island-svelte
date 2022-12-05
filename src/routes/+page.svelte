@@ -182,21 +182,35 @@
 		--compressed: 50%;
 		--large-width: calc(100% / 6 * 5);
 		--small-width: calc(100% / 6);
+		--principle-text-size: calc(6vw + 10vh);
+		--hover-text-size: var(--principle-text-size);
+
+		@include small {
+			--compressed: 150%;
+			--stretched: 50%;
+			--principle-text-size: calc(20vw + 10vh);
+			--hover-text-size: calc(20vw + 10vh);
+		}
 	}
 
 	.title {
-    display: flex;
+		display: flex;
 		position: absolute;
 		width: 100%;
 		top: 0%;
 		z-index: 2;
 		justify-content: center;
 		text-transform: uppercase;
-		font-size: 40px;
+		font-size: 2.5rem;
 		transition: opacity 0.25s ease;
 
 		@include small {
-			opacity: 0;
+			font-size: 2rem;
+			width: unset;
+			top: 50%;
+			left: 0;
+			writing-mode: tb;
+			transform: translateY(-50%) rotate(180deg);
 		}
 
 		.kotti {
@@ -228,11 +242,21 @@
 			background-color: var(--green);
 			flex-basis: var(--large-width);
 
+			.text {
+				@include small {
+					font-stretch: var(--stretched);
+				}
+			}
+
 			.hover-album & {
 				flex-basis: var(--small-width);
 
 				.text {
 					font-stretch: var(--compressed);
+
+					@include small {
+						font-size: 25px;
+					}
 				}
 			}
 		}
@@ -242,6 +266,10 @@
 
 			.text {
 				font-stretch: var(--compressed);
+
+				@include small {
+					font-size: 25px;
+				}
 			}
 
 			.hover-album & {
@@ -249,6 +277,10 @@
 
 				.text {
 					font-stretch: var(--stretched);
+
+					@include small {
+						font-size: 120px;
+					}
 				}
 			}
 		}
@@ -256,13 +288,18 @@
 
 	.text {
 		width: 100%;
-		font-size: calc(6vw + 10vh);
+		font-size: var(--principle-text-size);
 		text-transform: uppercase;
 		line-height: 0.8;
-		transition: font-stretch var(--transition-duration) ease-in-out;
+		transition: var(--transition-duration) ease-in-out;
+		transition-property: font-stretch, font-size;
 		text-align: center;
 		position: relative;
 		z-index: 2;
+
+		[class='^hover'] & {
+			font-size: var(--principle-text-size);
+		}
 	}
 
 	.svg-container {
