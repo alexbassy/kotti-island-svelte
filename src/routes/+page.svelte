@@ -4,14 +4,14 @@
 	import anime from 'animejs'
 
 	const breakpoint = 768
-	let isMobile
+	let isMobile: boolean
 
 	if (browser) {
 		const query = window.matchMedia(`(min-width: ${breakpoint}px)`)
 		query.addEventListener('change', (event) => {
-			isMobile = event.matches
+			isMobile = !event.matches
 		})
-		isMobile = query.matches
+		isMobile = !query.matches
 	}
 
 	type Section = 'exhibition' | 'album'
