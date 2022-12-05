@@ -100,6 +100,8 @@
 
 <svelte:window on:resize={setViewBox} />
 
+<svelte:body on:touchmove|preventDefault|nonpassive={() => void 0} />
+
 <main
 	class="container"
 	class:hover-exhibition={activeSection === 'exhibition'}
