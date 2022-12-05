@@ -226,6 +226,7 @@
 	.container {
 		display: flex;
 		height: 100vh;
+		height: 100dvh;
 		flex-direction: column;
 
 		@include large {
