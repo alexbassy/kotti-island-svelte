@@ -33,7 +33,7 @@
 		viewBoxHeight = height
 
 		// Tweak the rotation of the ellipse to not go over the sides
-		const arbitraryMagicNumber = 32
+		const arbitraryMagicNumber = isMobile ? 92 : 32
 		ellipseRotation = arbitraryMagicNumber * (smallViewBoxWidth / viewBoxHeight)
 	}
 
@@ -60,10 +60,12 @@
 				height: '100%',
 				...defaultOptions,
 			})
+
+			// Big circle!
 			anime({
 				targets: ellipse,
 				rx: '250%',
-				ry: '25%',
+				ry: isMobile ? '50%' : '25%',
 				...defaultOptions,
 			})
 		} else if (browser) {
@@ -77,8 +79,8 @@
 			})
 			anime({
 				targets: ellipse,
-				rx: '40%',
-				ry: '50%',
+				rx: isMobile ? '1600%' : '40%',
+				ry: isMobile ? '40%' : '50%',
 				...defaultOptions,
 			})
 		}
