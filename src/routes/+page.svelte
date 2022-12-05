@@ -45,43 +45,43 @@
 	})
 
 	const animationDuration = 800
-	const defaultOptions = {
-		easing: 'easeInSine',
-		duration: animationDuration,
-	}
 
 	$: {
+		// Big ellipse, smaller rectangle
 		if (browser && activeSection === 'album') {
 			anime({
 				targets: rect,
-				x: '50%',
-				y: '0%',
-				width: '15%',
-				height: '100%',
-				...defaultOptions,
+				x: isMobile ? '-1700%' : '50%',
+				y: isMobile ? '40%' : '0%',
+				width: isMobile ? '3500%' : '15%',
+				height: isMobile ? '15%' : '100%',
+				easing: 'easeInSine',
+				duration: animationDuration,
 			})
-
-			// Big circle!
 			anime({
 				targets: ellipse,
 				rx: '250%',
 				ry: isMobile ? '50%' : '25%',
-				...defaultOptions,
+				easing: 'easeOutSine',
+				duration: animationDuration,
 			})
 		} else if (browser) {
+			// Big rectangle, smaller ellipse
 			anime({
 				targets: rect,
-				x: '-180%',
-				y: '25%',
-				width: '460%',
-				height: '50%',
-				...defaultOptions,
+				x: isMobile ? '-140%' : '-180%',
+				y: isMobile ? '5%' : '25%',
+				width: isMobile ? '380%' : '460%',
+				height: isMobile ? '90%' : '50%',
+				easing: 'easeOutSine',
+				duration: animationDuration,
 			})
 			anime({
 				targets: ellipse,
 				rx: isMobile ? '1600%' : '40%',
 				ry: isMobile ? '40%' : '50%',
-				...defaultOptions,
+				easing: 'easeInSine',
+				duration: animationDuration,
 			})
 		}
 	}
