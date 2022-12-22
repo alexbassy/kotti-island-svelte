@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte'
 	import { browser } from '$app/environment'
 	import anime from 'animejs'
+	import KottiIslandLogo from '$components/KottiIslandLogo.svelte'
 
 	const breakpoint = 768
 	let isMobile: boolean
@@ -108,10 +109,7 @@
 	class:hover-album={activeSection === 'album'}
 	bind:this={containerElement}
 >
-	<h1 class="title">
-		<span class="kotti">Kotti</span>
-		<span class="island">Island</span>
-	</h1>
+	<KottiIslandLogo />
 	<section
 		class="section exhibition"
 		on:mouseover={setActiveSection('exhibition')}
@@ -169,16 +167,7 @@
 </main>
 
 <style lang="scss">
-	@mixin small {
-		@media (max-width: 769px) {
-			@content;
-		}
-	}
-	@mixin large {
-		@media (min-width: 768px) {
-			@content;
-		}
-	}
+	@import '../lib/styles/support';
 
 	:root {
 		--transition-duration: 1s;
@@ -194,34 +183,6 @@
 			--stretched: 50%;
 			--principle-text-size: calc(20vw + 10vh);
 			--hover-text-size: calc(20vw + 10vh);
-		}
-	}
-
-	.title {
-		display: flex;
-		position: absolute;
-		width: 100%;
-		top: 0%;
-		z-index: 2;
-		justify-content: center;
-		text-transform: uppercase;
-		font-size: 2.5rem;
-		transition: opacity 0.25s ease;
-
-		@include small {
-			font-size: 2rem;
-			width: unset;
-			top: 50%;
-			left: 0;
-			writing-mode: tb;
-			transform: translateY(-50%) rotate(180deg);
-		}
-
-		.kotti {
-			font-stretch: 142%;
-		}
-		.island {
-			font-stretch: 60%;
 		}
 	}
 
