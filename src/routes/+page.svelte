@@ -301,10 +301,6 @@
 		text-align: center;
 		position: relative;
 		z-index: 2;
-
-		[class='^hover'] & {
-			font-size: var(--principle-text-size);
-		}
 	}
 
 	.svg-container {
