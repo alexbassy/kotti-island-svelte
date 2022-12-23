@@ -19,6 +19,8 @@
 
 <svelte:window on:resize={handleResize} />
 
+<svelte:body on:touchmove|preventDefault|nonpassive={() => void 0} />
+
 <div class="page-container">
 	<header class="header">
 		<KottiIslandLogo />
@@ -205,6 +207,7 @@
 	.page-container {
 		display: flex;
 		flex-direction: column;
+		height: 100vh;
 		height: 100dvh;
 		background-color: var(--green);
 	}
