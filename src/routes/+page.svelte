@@ -109,7 +109,9 @@
 	class:hover-album={activeSection === 'album'}
 	bind:this={containerElement}
 >
-	<KottiIslandLogo />
+	<div class="title-container">
+		<KottiIslandLogo />
+	</div>
 	<section
 		class="section exhibition"
 		on:mouseover={setActiveSection('exhibition')}
@@ -262,6 +264,24 @@
 		text-align: center;
 		position: relative;
 		z-index: 2;
+	}
+
+	.title-container {
+		display: flex;
+		position: absolute;
+		width: 100%;
+		top: 0%;
+		z-index: 2;
+		justify-content: center;
+
+		@include small {
+			font-size: 2rem;
+			width: unset;
+			top: 50%;
+			left: 0;
+			writing-mode: tb;
+			transform: translateY(-50%) rotate(180deg);
+		}
 	}
 
 	.svg-container {
