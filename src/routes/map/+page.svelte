@@ -309,6 +309,7 @@
 		transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 		transform-box: fill-box;
 		transform-origin: center center;
+		-webkit-tap-highlight-color: transparent;
 
 		&:hover {
 			transform: scale(1.5);
