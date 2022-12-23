@@ -26,6 +26,8 @@
 
 		&__head {
 			display: flex;
+			align-items: baseline;
+			gap: 0.5rem;
 		}
 
 		&__name {
