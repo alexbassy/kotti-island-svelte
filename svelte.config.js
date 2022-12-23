@@ -1,4 +1,4 @@
-import adapter from '@sveltejs/adapter-auto'
+import vercel from '@sveltejs/adapter-vercel'
 import preprocess from 'svelte-preprocess'
 import { resolve } from 'path'
 
@@ -9,7 +9,9 @@ const config = {
 	preprocess: preprocess(),
 
 	kit: {
-		adapter: adapter(),
+		adapter: vercel({
+			edge: true,
+		}),
 
 		alias: {
 			$src: resolve('./src'),
