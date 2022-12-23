@@ -17,6 +17,11 @@
 	})
 </script>
 
+<svelte:head>
+	<title>Map 📍 Kotti Island</title>
+	<meta name="theme-color" content="#fff" />
+</svelte:head>
+
 <svelte:window on:resize={handleResize} />
 
 <svelte:body on:touchmove|preventDefault|nonpassive={() => void 0} />

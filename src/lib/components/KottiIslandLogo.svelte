@@ -9,6 +9,7 @@
 	.title {
 		text-transform: uppercase;
 		font-size: 2.5rem;
+		display: flex;
 
 		.kotti {
 			font-stretch: 142%;
