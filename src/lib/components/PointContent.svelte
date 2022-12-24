@@ -1,12 +1,13 @@
 <script lang="ts">
 	import type { IPoint, Language } from '../types/Map'
+	import { fly, fade } from 'svelte/transition'
 
 	export let content: IPoint
 
 	let language: Language = 'de'
 </script>
 
-<div class="pointContent">
+<div class="pointContent" transition:fly={{ y: 10, duration: 300 }}>
 	<div class="pointContent__head">
 		<div class="pointContent__index">{content.index}</div>
 		<div class="pointContent__headText">
@@ -28,7 +29,7 @@
 		bottom: 0;
 		left: 0;
 		background-color: #fff;
-		padding: 0.5rem;
+		padding: 0.75rem;
 		width: 100vw;
 		font-family: var(--system-font);
 
@@ -82,7 +83,6 @@
 		}
 
 		&__description {
-			font-size: 0.75rem;
 			max-height: 12rem;
 			overflow: auto;
 			-webkit-overflow-scrolling: touch;

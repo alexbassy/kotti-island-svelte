@@ -290,7 +290,7 @@
 						<g
 							id="point-9_2"
 							class="point-group point-9_2"
-							class:focused={selectedPointIndex === '9_2'}
+							class:focused={selectedPointIndex === '9'}
 							data-point="9_2"
 							tabindex="0"
 							aria-label="Point 9_2"
@@ -312,7 +312,7 @@
 						<g
 							id="point-9_3"
 							class="point-group point-9_3"
-							class:focused={selectedPointIndex === '9_3'}
+							class:focused={selectedPointIndex === '9'}
 							data-point="9_3"
 							tabindex="0"
 							aria-label="Point 9_3"
@@ -334,7 +334,7 @@
 						<g
 							id="point-9_4"
 							class="point-group point-9_4"
-							class:focused={selectedPointIndex === '9_4'}
+							class:focused={selectedPointIndex === '9'}
 							data-point="9_4"
 							tabindex="0"
 							aria-label="Point 9_4"
@@ -356,7 +356,7 @@
 						<g
 							id="point-9_5"
 							class="point-group point-9_5"
-							class:focused={selectedPointIndex === '9_5'}
+							class:focused={selectedPointIndex === '9'}
 							data-point="9_5"
 							tabindex="0"
 							aria-label="Point 9_5"
@@ -491,7 +491,9 @@
 		</svg>
 
 		{#if selectedPoint}
-			<PointContent content={selectedPoint} />
+			{#key selectedPointIndex}
+				<PointContent content={selectedPoint} />
+			{/key}
 		{/if}
 	</main>
 </div>
