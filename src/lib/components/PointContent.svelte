@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { IPoint, Language } from '../types/Map'
-	import { fly, fade } from 'svelte/transition'
+	import { fly } from 'svelte/transition'
 
 	export let content: IPoint
 
