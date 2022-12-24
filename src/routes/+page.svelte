@@ -156,7 +156,7 @@
 				/>
 			</svg>
 		</div>
-		<h1 class="text exhibition">Eine <br />Ausstel<wbr />lung</h1>
+		<h1 class="text exhibition">Eine <br />Ausstel<br />lung</h1>
 	</section>
 	<section
 		class="section album"
@@ -183,7 +183,7 @@
 				/>
 			</svg>
 		</div>
-		<h1 class="text album">Ein Album</h1>
+		<h1 class="text album">Ein<br />Album</h1>
 	</section>
 </main>
 
