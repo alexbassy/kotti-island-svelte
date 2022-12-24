@@ -47,22 +47,45 @@
 
 	const animationDuration = 800
 
+	$: shapeStates = {
+		albumActive: {
+			rect: {
+				x: isMobile ? '-1700%' : '50%',
+				y: isMobile ? '40%' : '0%',
+				width: isMobile ? '3500%' : '15%',
+				height: isMobile ? '15%' : '100%',
+			},
+			ellipse: {
+				rx: '250%',
+				ry: isMobile ? '50%' : '25%',
+			},
+		},
+		exhibitionActive: {
+			rect: {
+				x: isMobile ? '-140%' : '-180%',
+				y: isMobile ? '5%' : '25%',
+				width: isMobile ? '380%' : '460%',
+				height: isMobile ? '90%' : '50%',
+			},
+			ellipse: {
+				rx: isMobile ? '1600%' : '40%',
+				ry: isMobile ? '40%' : '50%',
+			},
+		},
+	}
+
 	$: {
 		// Big ellipse, smaller rectangle
 		if (browser && activeSection === 'album') {
 			anime({
 				targets: rect,
-				x: isMobile ? '-1700%' : '50%',
-				y: isMobile ? '40%' : '0%',
-				width: isMobile ? '3500%' : '15%',
-				height: isMobile ? '15%' : '100%',
+				...shapeStates.albumActive.rect,
 				easing: 'easeInSine',
 				duration: animationDuration,
 			})
 			anime({
 				targets: ellipse,
-				rx: '250%',
-				ry: isMobile ? '50%' : '25%',
+				...shapeStates.albumActive.ellipse,
 				easing: 'easeOutSine',
 				duration: animationDuration,
 			})
@@ -70,17 +93,13 @@
 			// Big rectangle, smaller ellipse
 			anime({
 				targets: rect,
-				x: isMobile ? '-140%' : '-180%',
-				y: isMobile ? '5%' : '25%',
-				width: isMobile ? '380%' : '460%',
-				height: isMobile ? '90%' : '50%',
+				...shapeStates.exhibitionActive.rect,
 				easing: 'easeOutSine',
 				duration: animationDuration,
 			})
 			anime({
 				targets: ellipse,
-				rx: isMobile ? '1600%' : '40%',
-				ry: isMobile ? '40%' : '50%',
+				...shapeStates.exhibitionActive.ellipse,
 				easing: 'easeInSine',
 				duration: animationDuration,
 			})
@@ -128,10 +147,10 @@
 			>
 				<rect
 					bind:this={rect}
-					x="-180%"
-					y="25%"
-					width="460%"
-					height="50%"
+					x={shapeStates.exhibitionActive.rect.x}
+					y={shapeStates.exhibitionActive.rect.y}
+					width={shapeStates.exhibitionActive.rect.width}
+					height={shapeStates.exhibitionActive.rect.height}
 					transform="rotate(12 {smallViewBoxWidth / 10} 0)"
 					fill="#fff"
 				/>
@@ -158,8 +177,8 @@
 					fill="var(--green)"
 					cx="50%"
 					cy="50%"
-					rx="40%"
-					ry="50%"
+					rx={shapeStates.exhibitionActive.ellipse.rx}
+					ry={shapeStates.exhibitionActive.ellipse.ry}
 					transform="rotate({ellipseRotation})"
 				/>
 			</svg>
