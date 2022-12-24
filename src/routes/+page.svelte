@@ -38,6 +38,7 @@
 		ellipseRotation = arbitraryMagicNumber * (smallViewBoxWidth / viewBoxHeight)
 	}
 
+	// Refs
 	let ellipse: SVGEllipseElement
 	let rect: SVGRectElement
 
@@ -47,6 +48,11 @@
 
 	const animationDuration = 750
 
+	const animationDefaults = {
+		easing: 'easeInSine',
+		duration: animationDuration,
+	}
+
 	$: shapeStates = {
 		albumActive: {
 			rect: {
@@ -54,10 +60,12 @@
 				y: isMobile ? '40%' : '0%',
 				width: isMobile ? '3500%' : '15%',
 				height: isMobile ? '15%' : '100%',
+				...animationDefaults,
 			},
 			ellipse: {
 				rx: '250%',
 				ry: isMobile ? '50%' : '25%',
+				...animationDefaults,
 			},
 		},
 		exhibitionActive: {
@@ -66,10 +74,12 @@
 				y: isMobile ? '5%' : '25%',
 				width: isMobile ? '380%' : '460%',
 				height: isMobile ? '90%' : '50%',
+				...animationDefaults,
 			},
 			ellipse: {
 				rx: isMobile ? '1600%' : '40%',
 				ry: isMobile ? '40%' : '50%',
+				...animationDefaults,
 			},
 		},
 	}
@@ -77,31 +87,31 @@
 	$: {
 		// Big ellipse, smaller rectangle
 		if (browser && activeSection === 'album') {
-			anime({
-				targets: rect,
-				...shapeStates.albumActive.rect,
-				easing: 'easeInSine',
-				duration: animationDuration,
-			})
-			anime({
-				targets: ellipse,
-				...shapeStates.albumActive.ellipse,
-				easing: 'easeInSine',
-				duration: animationDuration,
-			})
+			anime({ targets: rect, ...shapeStates.albumActive.rect })
+			anime({ targets: ellipse, ...shapeStates.albumActive.ellipse })
 		} else if (browser) {
 			// Big rectangle, smaller ellipse
+			anime({ targets: rect, ...shapeStates.exhibitionActive.rect })
+			anime({ targets: ellipse, ...shapeStates.exhibitionActive.ellipse })
+		}
+	}
+
+	let selected: Section | null = null
+
+	$: {
+		if (selected === 'exhibition') {
 			anime({
-				targets: rect,
-				...shapeStates.exhibitionActive.rect,
-				easing: 'easeInSine',
-				duration: animationDuration,
+				targets: rect.parentElement,
+				...animationDefaults,
+				scale: 3,
+				complete: () => (window.location.href = 'https://www.kottiisland.com/'),
 			})
+		} else if (selected === 'album') {
 			anime({
-				targets: ellipse,
-				...shapeStates.exhibitionActive.ellipse,
-				easing: 'easeInSine',
-				duration: animationDuration,
+				targets: ellipse.parentElement,
+				...animationDefaults,
+				scale: 3,
+				complete: () => (window.location.href = 'https://www.kottiisland.com/'),
 			})
 		}
 	}
@@ -128,13 +138,15 @@
 	class:hover-album={activeSection === 'album'}
 	bind:this={containerElement}
 >
-	<div class="title-container">
+	<div class="title-container" class:disappear={!!selected}>
 		<KottiIslandLogo />
 	</div>
 	<section
 		class="section exhibition"
 		on:mouseover={setActiveSection('exhibition')}
 		on:focus={setActiveSection('exhibition')}
+		class:selected={selected === 'exhibition'}
+		class:disappear={selected === 'album'}
 	>
 		<div class="svg-container">
 			<svg
@@ -156,12 +168,16 @@
 				/>
 			</svg>
 		</div>
-		<h1 class="text exhibition">Eine <br />Ausstel<br />lung</h1>
+		<h1 class="text exhibition" on:click={() => (selected = 'exhibition')}>
+			Eine <br />Ausstell<br />ung
+		</h1>
 	</section>
 	<section
 		class="section album"
 		on:mouseover={setActiveSection('album')}
 		on:focus={setActiveSection('album')}
+		class:selected={selected === 'album'}
+		class:disappear={selected === 'exhibition'}
 	>
 		<div class="svg-container">
 			<svg
@@ -183,12 +199,32 @@
 				/>
 			</svg>
 		</div>
-		<h1 class="text album">Ein<br />Album</h1>
+		<h1 class="text album" on:click={() => (selected = 'album')}>Ein<br />Album</h1>
 	</section>
 </main>
 
 <style lang="scss">
 	@import '../lib/styles/support';
+
+	@keyframes fade-out {
+		0% {
+			opacity: 1;
+		}
+		100% {
+			opacity: 0;
+		}
+	}
+
+	@keyframes puff-out {
+		0% {
+			transform: scale(1);
+			opacity: 1;
+		}
+		100% {
+			transform: scale(1.2);
+			opacity: 0;
+		}
+	}
 
 	:root {
 		--transition-duration: 1s;
@@ -271,6 +307,32 @@
 				}
 			}
 		}
+
+		// Clicked styles
+		&.exhibition {
+			&.selected {
+				flex-basis: 100%;
+				.text {
+					animation: puff-out 0.75s ease-in-out forwards;
+				}
+			}
+			&.disappear {
+				animation: fade-out 0.75s ease-in-out forwards;
+				flex-basis: 0;
+			}
+		}
+		&.album {
+			&.selected {
+				flex-basis: 100%;
+				.text {
+					animation: puff-out 0.75s ease-in-out forwards;
+				}
+			}
+			&.disappear {
+				animation: fade-out 0.75s ease-in-out forwards;
+				flex-basis: 0;
+			}
+		}
 	}
 
 	.text {
@@ -283,6 +345,7 @@
 		text-align: center;
 		position: relative;
 		z-index: 2;
+		cursor: pointer;
 	}
 
 	.title-container {
@@ -300,6 +363,10 @@
 			left: 0;
 			writing-mode: tb;
 			transform: translateY(-50%) rotate(180deg);
+		}
+
+		&.disappear {
+			animation: fade-out 0.75s ease-in-out forwards;
 		}
 	}
 
