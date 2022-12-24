@@ -9,9 +9,7 @@ const config = {
 	preprocess: preprocess(),
 
 	kit: {
-		adapter: vercel({
-			edge: true,
-		}),
+		adapter: vercel(),
 
 		alias: {
 			$src: resolve('./src'),

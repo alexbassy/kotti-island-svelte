@@ -2,9 +2,8 @@
 	import { onMount } from 'svelte'
 	import KottiIslandLogo from '$components/KottiIslandLogo.svelte'
 	import PointContent from '$src/lib/components/PointContent.svelte'
-	import type { IContent, IPoint } from '$src/lib/types/Map'
-
-	export let data: IContent
+	import type { IPoint } from '$src/lib/types/Map'
+	import data from './content.json'
 
 	const headerHeight = 55
 
@@ -16,7 +15,14 @@
 		mapHeight = window.innerHeight - headerHeight
 	}
 
+	onMount(() => {
+		handleResize()
+	})
+
 	let selectedPoint: IPoint | null = null
+
+	let selectedPointIndex: string | null = null
+	$: selectedPointIndex = selectedPoint?.index ?? null
 
 	function onMapClick(event: Event) {
 		const parentPoint = (event.target as HTMLElement).closest('[data-point]')
@@ -24,15 +30,25 @@
 			selectedPoint = null
 			return
 		}
-		const point = data.points[`point_${parentPoint.dataset.point}`]
-		if (point) {
-			selectedPoint = point
+	}
+
+	function onKeyUp(point: string) {
+		return (event: KeyboardEvent) => {
+			if (event.key === 'Escape') {
+				selectedPoint = null
+			} else if (event.key === 'ArrowUp' || event.key === 'ArrowDown') {
+				const nextIndex = event.key === 'ArrowUp' ? Number(point) + 1 : Number(point) - 1
+				selectedPoint = data.points[nextIndex]
+				document.querySelector(`[data-point="${nextIndex}"]`)?.focus()
+			} else if (event.key === 'Space' || event.key === 'Enter') {
+				selectedPoint = data.points[point]
+			}
 		}
 	}
 
-	onMount(() => {
-		handleResize()
-	})
+	function setSelected(point: string): void {
+		selectedPoint = data.points[point]
+	}
 </script>
 
 <svelte:head>
@@ -57,6 +73,7 @@
 			fill="none"
 			xmlns="http://www.w3.org/2000/svg"
 			on:click={onMapClick}
+			on:keyup={onKeyUp}
 		>
 			<!-- Load the streets and labels as an external SVG to avoid a rendering bottleneck -->
 			<image href="/map-background.svg" width="100%" height="100%" />
@@ -81,8 +98,8 @@
 						<g
 							id="point-info"
 							class="point-group point-info"
+							class:focused={selectedPointIndex === 'info'}
 							data-point="info"
-							tabindex="0"
 							aria-label="Point info"
 						>
 							<path
@@ -98,9 +115,13 @@
 						<g
 							id="point-1"
 							class="point-group point-1"
+							class:focused={selectedPointIndex === '1'}
 							data-point="1"
 							tabindex="0"
 							aria-label="Point 1"
+							role="button"
+							on:click={() => setSelected('1')}
+							on:keyup={onKeyUp('1')}
 						>
 							<path
 								fill="#020000"
@@ -115,9 +136,13 @@
 						<g
 							id="point-2"
 							class="point-group point-2"
+							class:focused={selectedPointIndex === '2'}
 							data-point="2"
 							tabindex="0"
 							aria-label="Point 2"
+							role="button"
+							on:click={() => setSelected('2')}
+							on:keyup={onKeyUp('2')}
 						>
 							<path
 								id="oval"
@@ -133,9 +158,13 @@
 						<g
 							id="point-3"
 							class="point-group point-3"
+							class:focused={selectedPointIndex === '3'}
 							data-point="3"
 							tabindex="0"
 							aria-label="Point 3"
+							role="button"
+							on:click={() => setSelected('3')}
+							on:keyup={onKeyUp('3')}
 						>
 							<path
 								id="oval_2"
@@ -151,9 +180,13 @@
 						<g
 							id="point-4"
 							class="point-group point-4"
+							class:focused={selectedPointIndex === '4'}
 							data-point="4"
 							tabindex="0"
 							aria-label="Point 4"
+							role="button"
+							on:click={() => setSelected('4')}
+							on:keyup={onKeyUp('4')}
 						>
 							<path
 								id="oval_3"
@@ -169,9 +202,13 @@
 						<g
 							id="point-5"
 							class="point-group point-5"
+							class:focused={selectedPointIndex === '5'}
 							data-point="5"
 							tabindex="0"
 							aria-label="Point 5"
+							role="button"
+							on:click={() => setSelected('5')}
+							on:keyup={onKeyUp('5')}
 						>
 							<path
 								id="oval_4"
@@ -187,9 +224,13 @@
 						<g
 							id="point-6"
 							class="point-group point-6"
+							class:focused={selectedPointIndex === '6'}
 							data-point="6"
 							tabindex="0"
 							aria-label="Point 6"
+							role="button"
+							on:click={() => setSelected('6')}
+							on:keyup={onKeyUp('6')}
 						>
 							<path
 								id="oval_5"
@@ -205,9 +246,13 @@
 						<g
 							id="point-7+8"
 							class="point-group point-7+8"
+							class:focused={selectedPointIndex === '8'}
 							data-point="8"
 							tabindex="0"
 							aria-label="Point 7"
+							role="button"
+							on:click={() => setSelected('7')}
+							on:keyup={onKeyUp('7')}
 						>
 							<path
 								id="oval_6"
@@ -223,9 +268,13 @@
 						<g
 							id="point-9"
 							class="point-group point-9"
+							class:focused={selectedPointIndex === '9'}
 							data-point="9"
 							tabindex="0"
 							aria-label="Point 9"
+							role="button"
+							on:click={() => setSelected('9')}
+							on:keyup={onKeyUp('9')}
 						>
 							<path
 								id="oval_7"
@@ -241,9 +290,13 @@
 						<g
 							id="point-9_2"
 							class="point-group point-9_2"
+							class:focused={selectedPointIndex === '9_2'}
 							data-point="9_2"
 							tabindex="0"
 							aria-label="Point 9_2"
+							role="button"
+							on:click={() => setSelected('9')}
+							on:keyup={onKeyUp('9')}
 						>
 							<path
 								id="oval_8"
@@ -259,9 +312,13 @@
 						<g
 							id="point-9_3"
 							class="point-group point-9_3"
+							class:focused={selectedPointIndex === '9_3'}
 							data-point="9_3"
 							tabindex="0"
 							aria-label="Point 9_3"
+							role="button"
+							on:click={() => setSelected('9')}
+							on:keyup={onKeyUp('9')}
 						>
 							<path
 								id="oval_9"
@@ -277,9 +334,13 @@
 						<g
 							id="point-9_4"
 							class="point-group point-9_4"
+							class:focused={selectedPointIndex === '9_4'}
 							data-point="9_4"
 							tabindex="0"
 							aria-label="Point 9_4"
+							role="button"
+							on:click={() => setSelected('9')}
+							on:keyup={onKeyUp('9')}
 						>
 							<path
 								id="oval_10"
@@ -295,9 +356,13 @@
 						<g
 							id="point-9_5"
 							class="point-group point-9_5"
+							class:focused={selectedPointIndex === '9_5'}
 							data-point="9_5"
 							tabindex="0"
 							aria-label="Point 9_5"
+							role="button"
+							on:click={() => setSelected('9')}
+							on:keyup={onKeyUp('9')}
 						>
 							<path
 								id="oval_11"
@@ -313,9 +378,13 @@
 						<g
 							id="point-10"
 							class="point-group point-10"
+							class:focused={selectedPointIndex === '10'}
 							data-point="10"
 							tabindex="0"
 							aria-label="Point 10"
+							role="button"
+							on:click={() => setSelected('10')}
+							on:keyup={onKeyUp('10')}
 						>
 							<path
 								id="oval_12"
@@ -331,9 +400,13 @@
 						<g
 							id="point-11"
 							class="point-group point-11"
+							class:focused={selectedPointIndex === '11'}
 							data-point="11"
 							tabindex="0"
 							aria-label="Point 11"
+							role="button"
+							on:click={() => setSelected('11')}
+							on:keyup={onKeyUp('11')}
 						>
 							<path
 								id="oval_13"
@@ -349,9 +422,13 @@
 						<g
 							id="point-12"
 							class="point-group point-12"
+							class:focused={selectedPointIndex === '12'}
 							data-point="12"
 							tabindex="0"
 							aria-label="Point 12"
+							role="button"
+							on:click={() => setSelected('12')}
+							on:keyup={onKeyUp('12')}
 						>
 							<path
 								id="oval_14"
@@ -367,9 +444,13 @@
 						<g
 							id="point-13"
 							class="point-group point-13"
+							class:focused={selectedPointIndex === '13'}
 							data-point="13"
 							tabindex="0"
 							aria-label="Point 13"
+							role="button"
+							on:click={() => setSelected('13')}
+							on:keyup={onKeyUp('13')}
 						>
 							<path
 								id="oval_15"
@@ -385,9 +466,13 @@
 						<g
 							id="point-14"
 							class="point-group point-14"
+							class:focused={selectedPointIndex === '14'}
 							data-point="14"
 							tabindex="0"
 							aria-label="Point 14"
+							role="button"
+							on:click={() => setSelected('14')}
+							on:keyup={onKeyUp('14')}
 						>
 							<path
 								id="oval_16"
@@ -442,7 +527,8 @@
 		transform-origin: center center;
 		-webkit-tap-highlight-color: transparent;
 
-		&:hover {
+		&:hover,
+		&.focused {
 			transform: scale(1.5);
 		}
 

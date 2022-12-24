@@ -11,9 +11,12 @@
 
 :root {
 	--green: #49e98c;
+
+	--gravity-font: 'ABC Gravity', system-ui, sans-serif;
+	--system-font: BlinkMacSystemFont, -apple-system, 'Segoe UI', Roboto, Oxygen, sans-serif;
 }
 
 html {
-	font-family: 'ABC Gravity', system-ui, sans-serif;
+	font-family: var(--gravity-font);
 	background-color: #f6f6f6;
 }

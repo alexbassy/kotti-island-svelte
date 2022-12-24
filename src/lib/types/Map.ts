@@ -1,14 +1,16 @@
+type PointKey = `${number}`
+
 export interface IContent {
-	points: Record<string, IPoint>
+	points: Record<PointKey, IPoint>
 }
 
 export interface IPoint {
-	index: number // point index, not index in list
+	index: string // point index, not index in list
 	type: string
 	name: string
 	person: string
 	year: number
-	location: string
+	location: string | ITranslation
 	media: ITranslation
 	description: ITranslation
 }
