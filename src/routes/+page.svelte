@@ -45,7 +45,7 @@
 		setViewBox()
 	})
 
-	const animationDuration = 800
+	const animationDuration = 750
 
 	$: shapeStates = {
 		albumActive: {
@@ -86,7 +86,7 @@
 			anime({
 				targets: ellipse,
 				...shapeStates.albumActive.ellipse,
-				easing: 'easeOutSine',
+				easing: 'easeInSine',
 				duration: animationDuration,
 			})
 		} else if (browser) {
@@ -94,7 +94,7 @@
 			anime({
 				targets: rect,
 				...shapeStates.exhibitionActive.rect,
-				easing: 'easeOutSine',
+				easing: 'easeInSine',
 				duration: animationDuration,
 			})
 			anime({
