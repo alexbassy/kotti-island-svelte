@@ -15,7 +15,9 @@
 		</div>
 	</div>
 	<div class="pointContent__media">{content.media[language]}</div>
-	<p class="pointContent__description">{content.description[language]}</p>
+	<p class="pointContent__description" on:touchmove|nonpassive={(event) => event.stopPropagation()}>
+		{content.description[language]}
+	</p>
 </div>
 
 <style lang="scss">
