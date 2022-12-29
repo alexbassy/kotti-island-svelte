@@ -169,7 +169,7 @@
 			</svg>
 		</div>
 		<h1 class="text exhibition" on:click={() => (selected = 'exhibition')}>
-			Eine <br />Ausstell<br />ung
+			Eine <br />Ausstel<br />lung
 		</h1>
 	</section>
 	<section
