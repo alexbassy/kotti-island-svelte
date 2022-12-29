@@ -8,14 +8,17 @@
 </script>
 
 <div class="pointContent" transition:fly={{ y: 10, duration: 300 }}>
+	<div class="pointContent__track">{content.type}</div>
 	<div class="pointContent__head">
 		<div class="pointContent__index">{content.index}</div>
 		<div class="pointContent__headText">
-			<div class="pointContent__track">{content.type}</div>
-			<div class="pointContent__name">{content.name}</div>
+			<div class="pointContent__person">{content.person}</div>
+			<div class="pointContent__media">{content.media[language]}</div>
+			{#if content.location}
+				<div class="pointContent__location">{content.location}</div>
+			{/if}
 		</div>
 	</div>
-	<div class="pointContent__media">{content.media[language]}</div>
 	<p class="pointContent__description" on:touchmove|nonpassive={(event) => event.stopPropagation()}>
 		{content.description[language]}
 	</p>
@@ -25,25 +28,26 @@
 	@import '../../lib/styles/support';
 
 	.pointContent {
+		--space: 0.75rem;
+
 		position: absolute;
 		bottom: 0;
 		left: 0;
 		background-color: #fff;
-		padding: 0.75rem;
+		padding: 1.75rem var(--space) var(--space);
 		width: 100vw;
-		font-family: var(--system-font);
+		font-family: var(--antarctica-font);
 
 		@include large {
 			bottom: 1rem;
 			left: 1rem;
-			max-width: 450px;
+			max-width: clamp(550px, 100%, 40vw);
 		}
 
 		&__head {
 			display: flex;
 			align-items: flex-start;
 			gap: 0.5rem;
-			font-family: var(--gravity-font);
 		}
 
 		&__headText {
@@ -55,19 +59,43 @@
 		&__track {
 			margin-left: auto;
 			font-size: 0.85rem;
+			font-weight: 900;
+			font-stretch: 120%;
+			position: absolute;
+			text-transform: uppercase;
+			top: 0.5rem;
+			right: var(--space);
 		}
 
-		&__name {
-			font-variation-settings: 'slnt' -16;
+		&__person {
+			font-style: italic;
+			font-weight: 671;
+			font-size: 1.8125rem;
+			line-height: 1.3103448276;
+			font-stretch: 100%;
+			font-variation-settings: 'CNTR' 100;
 			text-transform: uppercase;
 			font-size: 1.5rem;
 		}
 
+		&__media {
+			font-style: italic;
+			font-weight: 536;
+			font-size: 14px;
+			line-height: 18px;
+			color: #000000;
+			font-stretch: 150%;
+			font-variation-settings: 'CNTR' 100;
+			text-transform: uppercase;
+		}
+
 		&__index {
-			font-size: 2rem;
+			font-size: 1.5rem;
 			background: #000;
 			border-radius: 50%;
-			width: 6rem;
+			font-stretch: 200%;
+			width: 3.5rem;
+			line-height: 1.1;
 			color: #fff;
 			display: inline-flex;
 			align-items: center;
@@ -76,16 +104,23 @@
 			padding-top: 3px;
 		}
 
-		&__media {
-			font-style: oblique;
-			font-weight: 300;
-			margin: 0.15rem 0;
+		&__location {
+			font-weight: 200;
+			font-size: 14px;
+			line-height: 18px;
+			margin: 0.15rem 0 0.5rem;
+			font-stretch: 200%;
 		}
 
 		&__description {
 			max-height: 12rem;
 			overflow: auto;
 			-webkit-overflow-scrolling: touch;
+			font-weight: 400;
+			font-size: 16px;
+			line-height: 155%;
+			font-stretch: 85%;
+			font-variation-settings: 'CNTR' 100;
 
 			&::-webkit-scrollbar {
 				width: 3px;

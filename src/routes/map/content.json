@@ -94,7 +94,7 @@
       "index": "6",
       "type": "Schauplatz/Sahne/Location",
       "name": "Kotti Kino",
-      "person": null,
+      "person": "Kotti Kino",
       "year": null,
       "media": {
         "de": "Filmvorführungen",
@@ -112,7 +112,7 @@
       "index": "7",
       "type": "Schauplatz/Sahne/Location",
       "name": "Späti TV",
-      "person": null,
+      "person": "Späti TV",
       "year": null,
       "media": {
         "de": "Videoinstallation",

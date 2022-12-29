@@ -499,7 +499,17 @@
 </div>
 
 <style lang="scss">
+	@font-face {
+		font-family: 'AntaTrial VAR';
+		src: url('/fonts/Antarctica-Trial-VF.woff2') format('woff2'),
+			url('/fonts/Antarctica-Trial-VF.woff2') format('woff2-variations');
+		font-weight: 1 950;
+		font-stretch: 1% 200%;
+		font-display: swap;
+	}
+
 	:root {
+		--antarctica-font: 'AntaTrial VAR', system-ui, sans-serif;
 		--header-height: 55px;
 	}
 

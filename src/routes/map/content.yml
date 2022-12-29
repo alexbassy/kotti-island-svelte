@@ -138,7 +138,7 @@ points:
     index: '6'
     type: Schauplatz/Sahne/Location
     name: Kotti Kino
-    person:
+    person: Kotti Kino
     year:
     media:
       de: Filmvorführungen
@@ -156,7 +156,7 @@ points:
     index: '7'
     type: Schauplatz/Sahne/Location
     name: Späti TV
-    person:
+    person: Späti TV
     year:
     media:
       de: Videoinstallation
