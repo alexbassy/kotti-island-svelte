@@ -1,28 +1,35 @@
 <script lang="ts">
 	import type { IPoint, Language } from '../types/Map'
 	import { fly } from 'svelte/transition'
+	import { activeLanguage } from '../stores/language'
 
 	export let content: IPoint
 
 	let language: Language = 'de'
 </script>
 
-<div class="pointContent" transition:fly={{ y: 10, duration: 300 }}>
+<section
+	id="pointDescriptor"
+	class="pointContent"
+	role="region"
+	aria-live="polite"
+	transition:fly={{ y: 10, duration: 300 }}
+>
 	<div class="pointContent__track">{content.type}</div>
 	<div class="pointContent__head">
 		<div class="pointContent__index">{content.index}</div>
 		<div class="pointContent__headText">
 			<div class="pointContent__person">{content.person}</div>
-			<div class="pointContent__media">{content.media[language]}</div>
+			<div class="pointContent__media">{content.media[$activeLanguage]}</div>
 			{#if content.location}
 				<div class="pointContent__location">{content.location}</div>
 			{/if}
 		</div>
 	</div>
 	<p class="pointContent__description" on:touchmove|nonpassive={(event) => event.stopPropagation()}>
-		{content.description[language]}
+		{content.description[$activeLanguage]}
 	</p>
-</div>
+</section>
 
 <style lang="scss">
 	@import '../../lib/styles/support';
@@ -36,7 +43,7 @@
 		background-color: #fff;
 		padding: 1.75rem var(--space) var(--space);
 		width: 100vw;
-		font-family: var(--antarctica-font);
+		font-family: var(--antarctica-LightItaContrast);
 
 		@include large {
 			bottom: 1rem;
@@ -65,6 +72,7 @@
 			text-transform: uppercase;
 			top: 0.5rem;
 			right: var(--space);
+			font-family: var(--gravity-font);
 		}
 
 		&__person {
@@ -72,8 +80,7 @@
 			font-weight: 671;
 			font-size: 1.8125rem;
 			line-height: 1.3103448276;
-			font-stretch: 100%;
-			font-variation-settings: 'CNTR' 100;
+			font-family: var(--antarctica-ExtBdItaContrast);
 			text-transform: uppercase;
 			font-size: 1.5rem;
 		}
@@ -84,8 +91,7 @@
 			font-size: 14px;
 			line-height: 18px;
 			color: #000000;
-			font-stretch: 150%;
-			font-variation-settings: 'CNTR' 100;
+			font-family: var(--antarctica-ExpMedItaContrast);
 			text-transform: uppercase;
 		}
 
@@ -109,7 +115,7 @@
 			font-size: 14px;
 			line-height: 18px;
 			margin: 0.15rem 0 0.5rem;
-			font-stretch: 200%;
+			font-family: var(--antarctica-UExXLtContrast);
 		}
 
 		&__description {
@@ -119,8 +125,7 @@
 			font-weight: 400;
 			font-size: 16px;
 			line-height: 155%;
-			font-stretch: 85%;
-			font-variation-settings: 'CNTR' 100;
+			font-family: var(--antarctica-LightContrast);
 
 			&::-webkit-scrollbar {
 				width: 3px;

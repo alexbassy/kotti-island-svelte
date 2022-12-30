@@ -10,11 +10,47 @@
 }
 
 @font-face {
-	font-family: 'AntaTrial VAR';
-	src: url('/fonts/Antarctica-Trial-VF.woff2') format('woff2'),
-		url('/fonts/Antarctica-Trial-VF.woff2') format('woff2-variations');
-	font-weight: 1 950;
-	font-stretch: 1% 200%;
+	font-family: 'Antarctica-UExXLtContrast';
+	src: url('/fonts/Antarctica-UExXLtContrast.woff2') format('woff2'),
+		url('/fonts/Antarctica-UExXLtContrast.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Antarctica-ExpMedItaContrast';
+	src: url('/fonts/Antarctica-ExpMedItaContrast.woff2') format('woff2'),
+		url('/fonts/Antarctica-ExpMedItaContrast.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Antarctica-LightContrast';
+	src: url('/fonts/Antarctica-LightContrast.woff2') format('woff2'),
+		url('/fonts/Antarctica-LightContrast.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Antarctica-ExtBdItaContrast';
+	src: url('/fonts/Antarctica-ExtBdItaContrast.woff2') format('woff2'),
+		url('/fonts/Antarctica-ExtBdItaContrast.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: 'Antarctica-LightItaContrast';
+	src: url('/fonts/Antarctica-LightItaContrast.woff2') format('woff2'),
+		url('/fonts/Antarctica-LightItaContrast.woff') format('woff');
+	font-weight: normal;
+	font-style: normal;
 	font-display: swap;
 }
 
@@ -23,6 +59,12 @@
 
 	--gravity-font: 'ABC Gravity', system-ui, sans-serif;
 	--system-font: BlinkMacSystemFont, -apple-system, 'Segoe UI', Roboto, Oxygen, sans-serif;
+
+	--antarctica-UExXLtContrast: 'Antarctica-UExXLtContrast', system-ui, sans-serif;
+	--antarctica-ExpMedItaContrast: 'Antarctica-ExpMedItaContrast', system-ui, sans-serif;
+	--antarctica-LightContrast: 'Antarctica-LightContrast', system-ui, sans-serif;
+	--antarctica-ExtBdItaContrast: 'Antarctica-ExtBdItaContrast', system-ui, sans-serif;
+	--antarctica-LightItaContrast: 'Antarctica-LightItaContrast', system-ui, sans-serif;
 }
 
 html {

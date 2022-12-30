@@ -4,6 +4,7 @@
 	import PointContent from '$src/lib/components/PointContent.svelte'
 	import type { IPoint } from '$src/lib/types/Map'
 	import data from './content.json'
+	import LanguageSelector from '$src/lib/components/LanguageSelector.svelte'
 
 	const headerHeight = 55
 
@@ -63,6 +64,9 @@
 <div class="page-container">
 	<header class="header">
 		<KottiIslandLogo />
+		<div class="languageSelectorContainer">
+			<LanguageSelector />
+		</div>
 	</header>
 	<main class="content-container">
 		<!-- The outer SVG has a viewBox set to the width and height of the page so that it scales with the page -->
@@ -120,6 +124,7 @@
 							tabindex="0"
 							aria-label="Point 1"
 							role="button"
+							aria-labelledby="pointDescriptor"
 							on:click={() => setSelected('1')}
 							on:keyup={onKeyUp('1')}
 						>
@@ -141,6 +146,7 @@
 							tabindex="0"
 							aria-label="Point 2"
 							role="button"
+							aria-labelledby="pointDescriptor"
 							on:click={() => setSelected('2')}
 							on:keyup={onKeyUp('2')}
 						>
@@ -163,6 +169,7 @@
 							tabindex="0"
 							aria-label="Point 3"
 							role="button"
+							aria-labelledby="pointDescriptor"
 							on:click={() => setSelected('3')}
 							on:keyup={onKeyUp('3')}
 						>
@@ -185,6 +192,7 @@
 							tabindex="0"
 							aria-label="Point 4"
 							role="button"
+							aria-labelledby="pointDescriptor"
 							on:click={() => setSelected('4')}
 							on:keyup={onKeyUp('4')}
 						>
@@ -207,6 +215,7 @@
 							tabindex="0"
 							aria-label="Point 5"
 							role="button"
+							aria-labelledby="pointDescriptor"
 							on:click={() => setSelected('5')}
 							on:keyup={onKeyUp('5')}
 						>
@@ -229,6 +238,7 @@
 							tabindex="0"
 							aria-label="Point 6"
 							role="button"
+							aria-labelledby="pointDescriptor"
 							on:click={() => setSelected('6')}
 							on:keyup={onKeyUp('6')}
 						>
@@ -251,6 +261,7 @@
 							tabindex="0"
 							aria-label="Point 7"
 							role="button"
+							aria-labelledby="pointDescriptor"
 							on:click={() => setSelected('7')}
 							on:keyup={onKeyUp('7')}
 						>
@@ -273,6 +284,7 @@
 							tabindex="0"
 							aria-label="Point 9"
 							role="button"
+							aria-labelledby="pointDescriptor"
 							on:click={() => setSelected('9')}
 							on:keyup={onKeyUp('9')}
 						>
@@ -295,6 +307,7 @@
 							tabindex="0"
 							aria-label="Point 9_2"
 							role="button"
+							aria-labelledby="pointDescriptor"
 							on:click={() => setSelected('9')}
 							on:keyup={onKeyUp('9')}
 						>
@@ -317,6 +330,7 @@
 							tabindex="0"
 							aria-label="Point 9_3"
 							role="button"
+							aria-labelledby="pointDescriptor"
 							on:click={() => setSelected('9')}
 							on:keyup={onKeyUp('9')}
 						>
@@ -339,6 +353,7 @@
 							tabindex="0"
 							aria-label="Point 9_4"
 							role="button"
+							aria-labelledby="pointDescriptor"
 							on:click={() => setSelected('9')}
 							on:keyup={onKeyUp('9')}
 						>
@@ -361,6 +376,7 @@
 							tabindex="0"
 							aria-label="Point 9_5"
 							role="button"
+							aria-labelledby="pointDescriptor"
 							on:click={() => setSelected('9')}
 							on:keyup={onKeyUp('9')}
 						>
@@ -383,6 +399,7 @@
 							tabindex="0"
 							aria-label="Point 10"
 							role="button"
+							aria-labelledby="pointDescriptor"
 							on:click={() => setSelected('10')}
 							on:keyup={onKeyUp('10')}
 						>
@@ -405,6 +422,7 @@
 							tabindex="0"
 							aria-label="Point 11"
 							role="button"
+							aria-labelledby="pointDescriptor"
 							on:click={() => setSelected('11')}
 							on:keyup={onKeyUp('11')}
 						>
@@ -427,6 +445,7 @@
 							tabindex="0"
 							aria-label="Point 12"
 							role="button"
+							aria-labelledby="pointDescriptor"
 							on:click={() => setSelected('12')}
 							on:keyup={onKeyUp('12')}
 						>
@@ -449,6 +468,7 @@
 							tabindex="0"
 							aria-label="Point 13"
 							role="button"
+							aria-labelledby="pointDescriptor"
 							on:click={() => setSelected('13')}
 							on:keyup={onKeyUp('13')}
 						>
@@ -471,6 +491,7 @@
 							tabindex="0"
 							aria-label="Point 14"
 							role="button"
+							aria-labelledby="pointDescriptor"
 							on:click={() => setSelected('14')}
 							on:keyup={onKeyUp('14')}
 						>
@@ -499,17 +520,7 @@
 </div>
 
 <style lang="scss">
-	@font-face {
-		font-family: 'AntaTrial VAR';
-		src: url('/fonts/Antarctica-Trial-VF.woff2') format('woff2'),
-			url('/fonts/Antarctica-Trial-VF.woff2') format('woff2-variations');
-		font-weight: 1 950;
-		font-stretch: 1% 200%;
-		font-display: swap;
-	}
-
 	:root {
-		--antarctica-font: 'AntaTrial VAR', system-ui, sans-serif;
 		--header-height: 55px;
 	}
 
@@ -520,6 +531,7 @@
 		height: 100dvh;
 		background-color: var(--green);
 	}
+
 	.header {
 		height: var(--header-height);
 		padding-top: 4px;
@@ -528,6 +540,13 @@
 		justify-content: center;
 		background: white;
 	}
+
+	.languageSelectorContainer {
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+
 	.content-container {
 		display: flex;
 	}

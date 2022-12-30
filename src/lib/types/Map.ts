@@ -17,4 +17,6 @@ export interface IPoint {
 
 export type Language = 'de' | 'tr' | 'en'
 
+export const LANGUAGES: Language[] = ['de', 'tr', 'en']
+
 export type ITranslation = Record<Language, string>
