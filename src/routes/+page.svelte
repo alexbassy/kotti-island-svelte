@@ -25,7 +25,12 @@
 	let ellipseRotation = 0
 
 	function setActiveSection(s: Section) {
-		return () => (activeSection = s)
+		return () => {
+			// Hacky way avoid `selected` animation being started immediately on mobile due to event propagation
+			setTimeout(() => {
+				activeSection = s
+			}, 100)
+		}
 	}
 
 	function setViewBox() {
@@ -46,10 +51,10 @@
 		setViewBox()
 	})
 
-	const animationDuration = 750
+	$: animationDuration = isMobile ? 900 : 1000
 
-	const animationDefaults = {
-		easing: 'easeInSine',
+	$: animationDefaults = {
+		easing: 'easeInOutSine',
 		duration: animationDuration,
 	}
 
@@ -98,20 +103,28 @@
 
 	let selected: Section | null = null
 
+	function navigateToExhibition() {
+		window.location.href = 'https://www.kottiisland.com/'
+	}
+
+	function navigateToAlbum() {
+		window.location.href = 'https://www.kottiisland.com/'
+	}
+
 	$: {
 		if (selected === 'exhibition') {
 			anime({
 				targets: rect.parentElement,
 				...animationDefaults,
 				scale: 3,
-				complete: () => (window.location.href = 'https://www.kottiisland.com/'),
+				complete: navigateToExhibition,
 			})
 		} else if (selected === 'album') {
 			anime({
 				targets: ellipse.parentElement,
 				...animationDefaults,
 				scale: 3,
-				complete: () => (window.location.href = 'https://www.kottiisland.com/'),
+				complete: navigateToAlbum,
 			})
 		}
 	}
@@ -168,7 +181,18 @@
 				/>
 			</svg>
 		</div>
-		<h1 class="text exhibition" on:click={() => (selected = 'exhibition')}>
+		<h1
+			class="text exhibition"
+			on:click={() => {
+				if (isMobile) return
+				selected = 'exhibition'
+			}}
+			on:touchend={() => {
+				if (activeSection === 'exhibition') {
+					selected = 'exhibition'
+				}
+			}}
+		>
 			Eine <br />Ausstel<br />lung
 		</h1>
 	</section>
@@ -199,7 +223,20 @@
 				/>
 			</svg>
 		</div>
-		<h1 class="text album" on:click={() => (selected = 'album')}>Ein<br />Album</h1>
+		<h1
+			class="text album"
+			on:click={(event) => {
+				if (isMobile) return
+				selected = 'album'
+			}}
+			on:touchend={(event) => {
+				if (activeSection === 'album') {
+					selected = 'album'
+				}
+			}}
+		>
+			Ein<br />Album
+		</h1>
 	</section>
 </main>
 
