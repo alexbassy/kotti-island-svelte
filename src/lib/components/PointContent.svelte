@@ -15,7 +15,11 @@
 	aria-live="polite"
 	transition:fly={{ y: 10, duration: 300 }}
 >
-	<div class="pointContent__track">{content.type}</div>
+	{#if content.type.en}
+		<div class="pointContent__track">{content.type[$activeLanguage]}</div>
+	{:else if content.type}
+		<div class="pointContent__track">{content.type}</div>
+	{/if}
 	<div class="pointContent__head">
 		<div class="pointContent__index">{content.index}</div>
 		<div class="pointContent__headText">

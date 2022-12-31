@@ -6,7 +6,7 @@ export interface IContent {
 
 export interface IPoint {
 	index: string // point index, not index in list
-	type: string
+	type: string | ITranslation
 	name: string
 	person: string
 	year: number

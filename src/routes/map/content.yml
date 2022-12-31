@@ -86,7 +86,10 @@ points:
 
   4:
     index: '4'
-    type: Schauplatz/Sahne/Location
+    type:
+      de: Schauplatz
+      tr: Sahne
+      en: Location
     name: Dejavu
     person: Menekşe Toprak
     year: '2022'
@@ -112,7 +115,10 @@ points:
 
   5:
     index: '5'
-    type: Schauplatz/Sahne/Location
+    type:
+      de: Schauplatz
+      tr: Sahne
+      en: Location
     name: Augen-Blicke
     person: Sandy Kaltenborn (image-shift.net) in Kooperation mit dem Verein Kotti-Coop e.V. , der Jens-Nydahl-Grundschule und dem Projektraum Kotti-Shop
     year: 2017, 2020, 2021
@@ -136,7 +142,10 @@ points:
         Sandy Kaltenborn has a degree in communication design. He attended the Berlin Weißensee School of Art and was a fellow at Akademie Schloss Solitude, Stuttgart. Since 1999 his work has been available at image-shift.net. Among other things, he is a co-founder of the working group Kotti & Co.
   6:
     index: '6'
-    type: Schauplatz/Sahne/Location
+    type:
+      de: Schauplatz
+      tr: Sahne
+      en: Location
     name: Kotti Kino
     person: Kotti Kino
     year:
@@ -154,7 +163,10 @@ points:
         Kotti Cinema shows films that are either set at Kottbusser Tor, feature Kotti in a major way, or were made by and with directors and actors who live here. The films were selected by Kreuzberg director Neco Celik, the “Spike Lee from Kreuzberg” (FAZ).
   7:
     index: '7'
-    type: Schauplatz/Sahne/Location
+    type:
+      de: Schauplatz
+      tr: Sahne
+      en: Location
     name: Späti TV
     person: Späti TV
     year:
@@ -175,7 +187,10 @@ points:
 
   8:
     index: '8'
-    type: Schauplatz/Sahne/Location
+    type:
+      de: Schauplatz
+      tr: Sahne
+      en: Location
     name: Karussell
     person: Manu Lossau
     year: 2020-2022
@@ -202,7 +217,10 @@ points:
 
   9:
     index: '9'
-    type: Arbeit/Çalışma hayatı/Work
+    type:
+      de: Arbeit
+      tr: Çalışma hayatı
+      en: Work
     name: Arbeit am Kotti
     person: Juma Hamdo & Jaś Miszewski
     year: '2022'
@@ -250,7 +268,10 @@ points:
 
   10:
     index: '10'
-    type: Arbeit/Çalışma hayatı/Work
+    type:
+      de: Arbeit
+      tr: Çalışma hayatı
+      en: Work
     name: Look at me behind the camera
     person: Juma Hamdo & Jaś Miszewski
     year: '2022'
@@ -268,7 +289,10 @@ points:
         With this portrait series of people at Kotti, we try to create quiet moments of encounter - in an everyday life in which a stream of images constantly rushes past us. For a few seconds, a relationship is created between the viewer and the person being viewed. A moment in which the imagination is given a little space to unfold.
   11:
     index: '11'
-    type: Gemeinschaft/Topluluk/Community
+    type:
+      de: Gemeinschaft
+      tr: Topluluk
+      en: Community
     name: Wahlrecht, Rente, Bildung
     person: Sandy Kaltenborn (image-shift.net) in Kooperation mit Kotti & Co
     year: '2021'
@@ -286,7 +310,10 @@ points:
         Wahlrecht, Rente, Bildung are three large-format banners with statements by members of Kotti & Co. A tenants’ organization at Kottbusser Tor came together to fight for their right to the city based on a shared history of migration in the district (www.kottico.net). The banners were part of the exhibition Gecekondu Plus / Das Gecekondu als Medium (2021), which transformed the community’s protest house—the Gecekondu—into a temporary and flexible exhibition space.
   12:
     index: '12'
-    type: Gemeinschaft/Topluluk/Community
+    type:
+      de: Gemeinschaft
+      tr: Topluluk
+      en: Community
     name: Meet & Move
     person: Theresa Maria Forthaus & Katharina Scheidtmann
     year: '2023'
@@ -329,7 +356,10 @@ points:
         Katharina Scheidtmann completed her B.A. at the ArtEZ Dance Academy (NL) in 2013 and has been working as a freelance dancer, choreographer and dance teacher ever since. In addition to creating her own artistic productions, she also works as an instructor at Seneca Intensiv and runs workshops and school projects. In 2022, she worked as the production manager and tutor in the community dance project Marler Partitur–In C by Sasha Waltz & Guests. She is also currently studying in the research-oriented Master’s program in Dance Studies at the FU Berlin.
   13:
     index: '13'
-    type: Gemeinschaft/Topluluk/Community
+    type:
+      de: Gemeinschaft
+      tr: Topluluk
+      en: Community
     name: Menschen vom Kotti
     person: Sonja Och
     year: '2022'
@@ -357,7 +387,10 @@ points:
         Sonja Och is a photojournalist, editor and author. In 2011, she attended the Danish School of Media and Journalism in Aarhus. In 2014, she attained her B.A. in Photojournalism at the Hochschule Hannover / University of Applied Sciences and Arts. In 2015–2016 she was a fellow in the “Young Photography” program of Stern magazine.
   14:
     index: '14'
-    type: Finale / Final
+    type:
+      de: Finale
+      tr: Final
+      en: Finale
     name: Kotti Island Sample Station
     person: Cecilia Tosh & Nicolai Rohrer
     year: '2022'

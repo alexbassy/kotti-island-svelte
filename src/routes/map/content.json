@@ -56,7 +56,11 @@
     },
     "4": {
       "index": "4",
-      "type": "Schauplatz/Sahne/Location",
+      "type": {
+        "de": "Schauplatz",
+        "tr": "Sahne",
+        "en": "Location"
+      },
       "name": "Dejavu",
       "person": "Menekşe Toprak",
       "year": "2022",
@@ -74,7 +78,11 @@
     },
     "5": {
       "index": "5",
-      "type": "Schauplatz/Sahne/Location",
+      "type": {
+        "de": "Schauplatz",
+        "tr": "Sahne",
+        "en": "Location"
+      },
       "name": "Augen-Blicke",
       "person": "Sandy Kaltenborn (image-shift.net) in Kooperation mit dem Verein Kotti-Coop e.V. , der Jens-Nydahl-Grundschule und dem Projektraum Kotti-Shop",
       "year": "2017, 2020, 2021",
@@ -92,7 +100,11 @@
     },
     "6": {
       "index": "6",
-      "type": "Schauplatz/Sahne/Location",
+      "type": {
+        "de": "Schauplatz",
+        "tr": "Sahne",
+        "en": "Location"
+      },
       "name": "Kotti Kino",
       "person": "Kotti Kino",
       "year": null,
@@ -110,7 +122,11 @@
     },
     "7": {
       "index": "7",
-      "type": "Schauplatz/Sahne/Location",
+      "type": {
+        "de": "Schauplatz",
+        "tr": "Sahne",
+        "en": "Location"
+      },
       "name": "Späti TV",
       "person": "Späti TV",
       "year": null,
@@ -128,7 +144,11 @@
     },
     "8": {
       "index": "8",
-      "type": "Schauplatz/Sahne/Location",
+      "type": {
+        "de": "Schauplatz",
+        "tr": "Sahne",
+        "en": "Location"
+      },
       "name": "Karussell",
       "person": "Manu Lossau",
       "year": "2020-2022",
@@ -146,7 +166,11 @@
     },
     "9": {
       "index": "9",
-      "type": "Arbeit/Çalışma hayatı/Work",
+      "type": {
+        "de": "Arbeit",
+        "tr": "Çalışma hayatı",
+        "en": "Work"
+      },
       "name": "Arbeit am Kotti",
       "person": "Juma Hamdo & Jaś Miszewski",
       "year": "2022",
@@ -164,7 +188,11 @@
     },
     "10": {
       "index": "10",
-      "type": "Arbeit/Çalışma hayatı/Work",
+      "type": {
+        "de": "Arbeit",
+        "tr": "Çalışma hayatı",
+        "en": "Work"
+      },
       "name": "Look at me behind the camera",
       "person": "Juma Hamdo & Jaś Miszewski",
       "year": "2022",
@@ -182,7 +210,11 @@
     },
     "11": {
       "index": "11",
-      "type": "Gemeinschaft/Topluluk/Community",
+      "type": {
+        "de": "Gemeinschaft",
+        "tr": "Topluluk",
+        "en": "Community"
+      },
       "name": "Wahlrecht, Rente, Bildung",
       "person": "Sandy Kaltenborn (image-shift.net) in Kooperation mit Kotti & Co",
       "year": "2021",
@@ -200,7 +232,11 @@
     },
     "12": {
       "index": "12",
-      "type": "Gemeinschaft/Topluluk/Community",
+      "type": {
+        "de": "Gemeinschaft",
+        "tr": "Topluluk",
+        "en": "Community"
+      },
       "name": "Meet & Move",
       "person": "Theresa Maria Forthaus & Katharina Scheidtmann",
       "year": "2023",
@@ -218,7 +254,11 @@
     },
     "13": {
       "index": "13",
-      "type": "Gemeinschaft/Topluluk/Community",
+      "type": {
+        "de": "Gemeinschaft",
+        "tr": "Topluluk",
+        "en": "Community"
+      },
       "name": "Menschen vom Kotti",
       "person": "Sonja Och",
       "year": "2022",
@@ -240,7 +280,11 @@
     },
     "14": {
       "index": "14",
-      "type": "Finale / Final",
+      "type": {
+        "de": "Finale",
+        "tr": "Final",
+        "en": "Finale"
+      },
       "name": "Kotti Island Sample Station",
       "person": "Cecilia Tosh & Nicolai Rohrer",
       "year": "2022",
