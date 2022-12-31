@@ -535,7 +535,7 @@
 
 		{#if selectedPoint}
 			{#key selectedPointIndex}
-				<PointContent content={selectedPoint} />
+				<PointContent content={selectedPoint} onExit={() => (selectedPoint = null)} />
 			{/key}
 		{/if}
 	</main>

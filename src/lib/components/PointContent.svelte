@@ -5,8 +5,28 @@
 
 	export let content: IPoint
 
-	let language: Language = 'de'
+	export let onExit: () => void
+
+	let touchstartY = 0
+
+	const isScrollingDescription = (elem: HTMLElement): boolean =>
+		elem.closest('.pointContent__description')
+
+	function onTouchStart(event: TouchEvent) {
+		if (isScrollingDescription(event.target)) return
+		touchstartY = event.changedTouches[0].screenY
+	}
+
+	function onTouchEnd(event: TouchEvent) {
+		if (isScrollingDescription(event.target)) return
+		const touchendY = event.changedTouches[0].screenY
+		if (touchendY - touchstartY > 50) {
+			if (onExit) onExit()
+		}
+	}
 </script>
+
+<svelte:body on:touchstart={onTouchStart} on:touchend={onTouchEnd} />
 
 <section
 	id="pointDescriptor"
