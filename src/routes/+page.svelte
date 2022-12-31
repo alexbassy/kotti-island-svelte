@@ -43,6 +43,15 @@
 		ellipseRotation = arbitraryMagicNumber * (smallViewBoxWidth / viewBoxHeight)
 	}
 
+	function onPageShow(event: Event) {
+		const historyTraversal =
+			event.persisted ||
+			(typeof window.performance != 'undefined' && window.performance.navigation.type === 2)
+		if (historyTraversal) {
+			window.location.reload()
+		}
+	}
+
 	// Refs
 	let ellipse: SVGEllipseElement
 	let rect: SVGRectElement
@@ -141,7 +150,7 @@
 	/>
 </svelte:head>
 
-<svelte:window on:resize={setViewBox} />
+<svelte:window on:resize={setViewBox} on:pageshow={onPageShow} />
 
 <svelte:body on:touchmove|preventDefault|nonpassive={() => void 0} />
 
