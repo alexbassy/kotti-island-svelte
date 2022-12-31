@@ -104,11 +104,11 @@
 	let selected: Section | null = null
 
 	function navigateToExhibition() {
-		window.location.href = 'https://www.kottiisland.com/'
+		window.location.href = 'https://info.kottiisland.com/'
 	}
 
 	function navigateToAlbum() {
-		window.location.href = 'https://www.kottiisland.com/'
+		window.location.href = 'https://info.kottiisland.com/album/homealbumde'
 	}
 
 	$: {
