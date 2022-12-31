@@ -3,6 +3,18 @@
 	import { browser } from '$app/environment'
 	import anime from 'animejs'
 	import KottiIslandLogo from '$components/KottiIslandLogo.svelte'
+	import { page } from '$app/stores'
+
+	$: {
+		// @ts-ignore
+		if (typeof gtag !== 'undefined') {
+			// @ts-ignore
+			gtag('config', 'G-HBS26GGYX2', {
+				page_title: document.title,
+				page_path: $page.url.pathname,
+			})
+		}
+	}
 
 	const breakpoint = 768
 	let isMobile: boolean
@@ -148,6 +160,16 @@
 		href="/fonts/ABCGravityVariable.woff2"
 		crossorigin="true"
 	/>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-HBS26GGYX2">
+	</script>
+	<script>
+		window.dataLayer = window.dataLayer || []
+		function gtag() {
+			dataLayer.push(arguments)
+		}
+		gtag('js', new Date())
+		gtag('config', 'G-HBS26GGYX2')
+	</script>
 </svelte:head>
 
 <svelte:window on:resize={setViewBox} on:pageshow={onPageShow} />

@@ -8,8 +8,10 @@
 	import { page } from '$app/stores'
 
 	$: {
+		// @ts-ignore
 		if (typeof gtag !== 'undefined') {
-			gtag('config', 'MEASUREMENT_ID', {
+			// @ts-ignore
+			gtag('config', 'G-HBS26GGYX2', {
 				page_title: document.title,
 				page_path: $page.url.pathname,
 			})
@@ -83,7 +85,7 @@
 
 <div class="page-container">
 	<header class="header">
-		<KottiIslandLogo />
+		<a href="https://kottiisland.com" class="logoLink"><KottiIslandLogo /></a>
 		<div class="languageSelectorContainer">
 			<LanguageSelector />
 		</div>
@@ -559,6 +561,11 @@
 		align-items: center;
 		justify-content: center;
 		background: white;
+	}
+
+	.logoLink {
+		text-decoration: none;
+		color: inherit;
 	}
 
 	.languageSelectorContainer {
