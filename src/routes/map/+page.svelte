@@ -5,6 +5,16 @@
 	import type { IPoint } from '$src/lib/types/Map'
 	import data from './content.json'
 	import LanguageSelector from '$src/lib/components/LanguageSelector.svelte'
+	import { page } from '$app/stores'
+
+	$: {
+		if (typeof gtag !== 'undefined') {
+			gtag('config', 'MEASUREMENT_ID', {
+				page_title: document.title,
+				page_path: $page.url.pathname,
+			})
+		}
+	}
 
 	const headerHeight = 55
 
@@ -55,6 +65,16 @@
 <svelte:head>
 	<title>Map 📍 Kotti Island</title>
 	<meta name="theme-color" content="#fff" />
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-HBS26GGYX2">
+	</script>
+	<script>
+		window.dataLayer = window.dataLayer || []
+		function gtag() {
+			dataLayer.push(arguments)
+		}
+		gtag('js', new Date())
+		gtag('config', 'G-HBS26GGYX2')
+	</script>
 </svelte:head>
 
 <svelte:window on:resize={handleResize} />
