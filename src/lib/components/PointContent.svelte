@@ -21,7 +21,9 @@
 		<div class="pointContent__headText">
 			<div class="pointContent__person">{content.person}</div>
 			<div class="pointContent__media">{content.media[$activeLanguage]}</div>
-			{#if content.location}
+			{#if content.location.en}
+				<div class="pointContent__location">{content.location[$activeLanguage]}</div>
+			{:else if content.location}
 				<div class="pointContent__location">{content.location}</div>
 			{/if}
 		</div>
