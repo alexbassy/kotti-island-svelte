@@ -153,6 +153,23 @@
 
 <svelte:head>
 	<title>Kotti Island</title>
+	<meta name="description" content="Eine audiovisuelle Erkundung des Kottbusser Tors" />
+
+	<!-- Facebook Meta Tags -->
+	<meta property="og:url" content="https://kottiisland.com" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Kotti Island" />
+	<meta property="og:description" content="Eine audiovisuelle Erkundung des Kottbusser Tors" />
+	<meta property="og:image" content="/og-image.png" />
+
+	<!-- Twitter Meta Tags -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta property="twitter:domain" content="kottiisland.com" />
+	<meta property="twitter:url" content="https://kottiisland.com" />
+	<meta name="twitter:title" content="Kotti Island" />
+	<meta name="twitter:description" content="Eine audiovisuelle Erkundung des Kottbusser Tors" />
+	<meta name="twitter:image" content="/og-image.png" />
+
 	<link
 		rel="preload"
 		as="font"

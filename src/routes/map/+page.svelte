@@ -67,6 +67,21 @@
 <svelte:head>
 	<title>Map 📍 Kotti Island</title>
 	<meta name="theme-color" content="#fff" />
+
+	<meta name="description" content="Eine audiovisuelle Erkundung des Kottbusser Tors" />
+
+	<!-- Facebook Meta Tags -->
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Kotti Island" />
+	<meta property="og:description" content="Eine audiovisuelle Erkundung des Kottbusser Tors" />
+	<meta property="og:image" content="/og-image.png" />
+
+	<!-- Twitter Meta Tags -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Kotti Island" />
+	<meta name="twitter:description" content="Eine audiovisuelle Erkundung des Kottbusser Tors" />
+	<meta name="twitter:image" content="/og-image.png" />
+
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-HBS26GGYX2">
 	</script>
 	<script>
