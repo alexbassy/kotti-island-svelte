@@ -9,7 +9,7 @@ export interface IPoint {
 	type: string | ITranslation
 	name: string
 	person: string
-	year: number
+	year: string | null
 	location: string | ITranslation
 	media: ITranslation
 	description: ITranslation

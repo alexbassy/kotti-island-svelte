@@ -1,7 +1,8 @@
 <script lang="ts">
 	import type { IPoint, Language } from '../types/Map'
-	import { fly } from 'svelte/transition'
 	import { activeLanguage } from '../stores/language'
+
+	export let count: number
 
 	export let content: IPoint
 
@@ -28,13 +29,7 @@
 
 <svelte:body on:touchstart={onTouchStart} on:touchend={onTouchEnd} />
 
-<section
-	id="pointDescriptor"
-	class="pointContent"
-	role="region"
-	aria-live="polite"
-	transition:fly={{ y: 10, duration: 300 }}
->
+<section id="pointDescriptor" class="pointContent" role="region" aria-live="polite">
 	{#if content.type.en}
 		<div class="pointContent__track">{content.type[$activeLanguage]}</div>
 	{:else if content.type}
@@ -63,19 +58,11 @@
 	.pointContent {
 		--space: 0.75rem;
 
-		position: absolute;
-		bottom: 0;
-		left: 0;
+		position: relative;
 		background-color: #fff;
 		padding: 1.75rem var(--space) var(--space);
-		width: 100vw;
 		font-family: var(--antarctica-LightItaContrast);
-
-		@include large {
-			bottom: 1rem;
-			left: 1rem;
-			max-width: clamp(550px, 100%, 40vw);
-		}
+		margin-top: 1rem;
 
 		&__head {
 			display: flex;
