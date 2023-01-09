@@ -64,6 +64,13 @@
 	function setSelected(point: string[]): void {
 		selectedPoint = Object.values(data.points).filter((p) => point.includes(p.index))
 	}
+
+	let isLoading = true
+	onMount(() => {
+		setTimeout(() => {
+			isLoading = false
+		}, 1000)
+	})
 </script>
 
 <svelte:head>
@@ -100,7 +107,7 @@
 
 <svelte:body on:touchmove|preventDefault|nonpassive={() => void 0} />
 
-<div class="page-container">
+<div class="page-container" class:loading={isLoading}>
 	<header class="header">
 		<a href="https://kottiisland.com" class="logoLink"><KottiIslandLogo /></a>
 		<div class="languageSelectorContainer">
@@ -638,6 +645,21 @@
 			bottom: 1rem;
 			left: 1rem;
 			max-width: clamp(550px, 100%, 40vw);
+		}
+	}
+
+	@keyframes pop {
+		from {
+			transform: scale(0.25);
+		}
+		to {
+			transform: scale(1);
+		}
+	}
+
+	.loading {
+		.point-group {
+			animation: pop 1s ease-in-out forwards;
 		}
 	}
 </style>
