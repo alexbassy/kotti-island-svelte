@@ -10,8 +10,11 @@
 
 	let touchstartY = 0
 
-	const isScrollingDescription = (elem: HTMLElement): boolean =>
-		elem.closest('.pointContent__description')
+	const isScrollingDescription = (elem: HTMLElement): boolean => {
+		const description = elem.closest('.pointContent__description')
+		if (!description) return false
+		return description.scrollHeight > description.clientHeight
+	}
 
 	function onTouchStart(event: TouchEvent) {
 		if (isScrollingDescription(event.target)) return
@@ -139,6 +142,7 @@
 			font-size: 16px;
 			line-height: 155%;
 			font-family: var(--antarctica-LightContrast);
+			white-space: break-spaces;
 
 			&::-webkit-scrollbar {
 				width: 3px;
