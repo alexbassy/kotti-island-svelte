@@ -28,7 +28,7 @@
 	}
 
 	type Section = 'exhibition' | 'album'
-	let activeSection: Section = 'exhibition'
+	let activeSection: Section = 'album'
 
 	let containerElement: HTMLElement
 
@@ -220,10 +220,10 @@
 			>
 				<rect
 					bind:this={rect}
-					x={shapeStates.exhibitionActive.rect.x}
-					y={shapeStates.exhibitionActive.rect.y}
-					width={shapeStates.exhibitionActive.rect.width}
-					height={shapeStates.exhibitionActive.rect.height}
+					x={shapeStates.albumActive.rect.x}
+					y={shapeStates.albumActive.rect.y}
+					width={shapeStates.albumActive.rect.width}
+					height={shapeStates.albumActive.rect.height}
 					transform="rotate(12 {smallViewBoxWidth / 10} 0)"
 					fill="#fff"
 				/>
@@ -265,8 +265,8 @@
 					fill="var(--green)"
 					cx="50%"
 					cy="50%"
-					rx={shapeStates.exhibitionActive.ellipse.rx}
-					ry={shapeStates.exhibitionActive.ellipse.ry}
+					rx={shapeStates.albumActive.ellipse.rx}
+					ry={shapeStates.albumActive.ellipse.ry}
 					transform="rotate({ellipseRotation})"
 				/>
 			</svg>
